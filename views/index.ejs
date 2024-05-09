@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRUD de Usuarios</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <h1>Usuarios</h1>
+  <% if (errors && errors.length > 0) { %>
+    <ul>
+      <% errors.forEach(error => { %>
+        <li><%= error.msg %></li>
+      <% }) %>
+    </ul>
+  <% } %>
+  <div class="container">
+    <div class="cta-form">
+      <h2>Llena el formulario:</h2>
+    </div>
+    <form action="/users" method="POST" class="form">
+      <input type="text" placeholder="nombre" id="name" name="name" class="form__input" required>
+      <label for="name" class="form__label">Nombre</label>
+
+      <input type="email" placeholder="email" id="email" name="email" class="form__input" required>
+      <label for="email" class="form__label">Email</label>
+
+      <input type="password" placeholder="password" id="password" name="password" class="form__input" required>
+      <label for="password" class="form__label">Contraseña</label>
+
+      <button type="submit">Crear Usuario</button>
+    </form>
+  </div>
+
+
+  <hr>
+  <h3>Lista de Usuarios</h3>
+  <ul>
+    <% users.forEach((user) => { %>
+      <li>
+        <%= user.name %> (<%= user.email %>)
+        <a href="/users/edit/<%= user._id %>">Editar</a>
+        <a href="/users/delete/<%= user._id %>">Eliminar</a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
